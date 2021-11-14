@@ -6,55 +6,80 @@ let resultList = document.querySelector('.result__list');
 const foodDescription = document.querySelector('.content__info');
 
 
+const resultArray = (key) => {
+	let newArray;
+	for (let i = 1; i <= 9; i++) {
+		if (i == key) {
+			newArray = mappedWineCategoriesToSorts[i];
+		} 
+		
+	}
+	// console.log(newArray);
+	return newArray;
+}
 
+resultArray(1);
 
+const showWine = (array) => {
+	let wineName;
+	for (let elem of array) {
+		// console.log(elem);
+		for (let wine of wineSorts) {
+			if (wine.id == elem) {
+				wineName = wine.name;
+			}
+		}
+		console.log(wineName);
+	}
+	return wineName;
+}
 
+showWine(resultArray(2));
 
-function createItem(name, sort) {
-	for (let i = 0; i < 1; i++) {
-		//Нужно эту часть доработать. несколько раз создается контейнер аккордеон
-		let resultItem = document.createElement('li');
+let wineArray = resultArray(2);
+
+function createItem(name, number) {
+	let resultItem = document.createElement('li');
 		resultItem.classList.add('result__item');
 		resultItem.classList.add('accordeon');
 		// resultItem.innerHTML = `${item}`;
 		resultList.append(resultItem);
 		foodDescription.classList.add('active');
-		resultItem.innerHTML = returnAccordeon(name, sort);
-	}
+		
+		resultItem.innerHTML = `		
+		<button class="accordeon__control" aria-expanded="false">
+			<span class="accordeon__title">${name}</span>
+			<span class="accordeon__icon"></span>
+		</button>
+	`;
+	// console.log(array);
+	iterateAccordeonLink(resultItem, resultArray(number));
 }
 
 let WINE_ID_MIN = 1;
-let WINE_ID_MAX = 11;
+let WINE_ID_MAX = 63;
 
-const iterateAccordeonLink = function () {
-	const accordeon = document.querySelector('.accordeon');
+const iterateAccordeonLink = (result, array) => {
 	const accordeonContent = document.createElement('div');
 	accordeonContent.classList.add('accordeon__content');
 	accordeonContent.setAttribute('aria-hidden', true);
-	accordeon.appendChild(accordeonContent);
-	console.log(accordeonContent);
-	for (let wine of wineSorts) {
-		if (wine.id >= WINE_ID_MIN && wine.id <= WINE_ID_MAX) {
-			let row = document.createElement('li');
-			row.innerHTML = `
-			<a href="#" class="accordeon__link">${wine.name}</a>
-			`
-			accordeonContent.appendChild(row);
-		};
+	result.appendChild(accordeonContent);
+	let wineName;
+	for (let elem of array) {
+		for (let wine of wineSorts) {
+			if (wine.id == elem) {
+				wineName = wine.name;
+				let row = document.createElement('li');
+				row.innerHTML = `
+				<a href="#" class="accordeon__link">${wineName}</a>
+				`
+				accordeonContent.appendChild(row);
+			}
+		}
+		console.log(wineName);
 	}
+	return wineName;
 }
-
-let returnAccordeon = function (name, sort) {
-	return `		
-			<button class="accordeon__control" aria-expanded="false">
-				<span class="accordeon__title">${name}</span>
-				<span class="accordeon__icon"></span>
-			</button>
-			${iterateAccordeonLink()}
-		`
-		
-}
-
 
 function removeTitle() {
 	resultTitle.remove();
@@ -79,8 +104,6 @@ function showData() {
 	result.prepend(resultTitle);
 }
 
-
-
 select.addEventListener('change', () => {
 	
 	let data = document.getElementById('select').value;
@@ -88,9 +111,9 @@ select.addEventListener('change', () => {
 
 	if (data === "red-meat") {
 		showData(); 
-		createItem(wines2[0]['name']);
-		createItem(wines2[1]['name']);
-		createItem(wines2[2]['name']);
+		createItem(wineCategories[0]['name'], 2);
+		createItem(wineCategories[1]['name'], 3);
+		createItem(wineCategories[2]['name'], 4);
 		foodDescription.innerHTML = foodSorts[0].name;
 		createAccordeons();
 		return;

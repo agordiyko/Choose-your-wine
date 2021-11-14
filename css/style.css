@@ -273,6 +273,9 @@ body {
 	transition: all 0.3s ease-out;
 	box-sizing: content-box;
 }
+.accordeon__content li:not(:last-child) {
+	margin-bottom: 10px;
+}
 .accordeon__link {
 	color: #FE9D9D;
 	text-decoration: underline;
