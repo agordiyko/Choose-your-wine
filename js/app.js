@@ -111,22 +111,23 @@ select.addEventListener('change', () => {
 
 	if (data === "red-meat") {
 		showData(); 
-		createItem(wineCategories[0]['name'], 2);
-		createItem(wineCategories[1]['name'], 3);
-		createItem(wineCategories[2]['name'], 4);
+		createItem(wineCategories[0]['name'], 1);
+		createItem(wineCategories[1]['name'], 2);
+		createItem(wineCategories[2]['name'], 3);
 		foodDescription.innerHTML = foodSorts[0].name;
 		createAccordeons();
 		return;
 	} 
 	if (data === "salted-smoked-meat") {
 		showData();
-		createItem((wines.id1.name), (wineSorts[0].name));
-		createItem(wines.id2.name);
-		createItem(wines.id3.name);
-		createItem(wines.id4.name);
-		createItem(wines.id5.name);
-		createItem(wines.id6.name);
-		createItem(wines.id8.name);
+		createItem(wineCategories[0]['name'], 1);
+		createItem(wineCategories[1]['name'], 2);
+		createItem(wineCategories[2]['name'], 3);
+		createItem(wineCategories[3]['name'], 4);
+		createItem(wineCategories[4]['name'], 5);
+		createItem(wineCategories[5]['name'], 6);
+		createItem(wineCategories[6]['name'], 7);
+		createItem(wineCategories[8]['name'], 9);
 		foodDescription.innerHTML = foodSorts[1].name;
 		createAccordeons();
 		return;
@@ -212,8 +213,8 @@ select.addEventListener('change', () => {
 	} 
 	if (data === "dessert") {
 		showData();
-		createItem(wines.id5.name);
-		createItem(wines.id9.name);
+		createItem(wineCategories[5]['name'], 5);
+		createItem(wineCategories[10]['name'], 9);
 		foodDescription.innerHTML = foodSorts[9].name;
 		createAccordeons();
 		return;
